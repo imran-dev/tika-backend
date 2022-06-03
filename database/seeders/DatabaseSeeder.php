@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $user->remember_token = Str::random(10);
         $user->save();
 
-        Person::factory(30)->create();
+        Person::factory(35)->create();
+        Category::factory(25)->create();
     }
 }
