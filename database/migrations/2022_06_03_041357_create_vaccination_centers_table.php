@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateVaccinationCentersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('vaccination_centers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->unsignedInteger('upazila_id');
+            $table->unsignedInteger('vaccine_id');
+            $table->unsignedInteger('available');
+            $table->unsignedTinyInteger('enabled')->default(1);
+            $table->timestamps();
+
+            $table->foreign('upazila_id')->references('id')->on('upazilas');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('vaccination_centers');
+    }
+}
