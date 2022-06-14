@@ -14,7 +14,8 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        $divisions = Division::paginate(10);
+        return view('divisions.index', ['divisions' => $divisions]);
     }
 
     /**
@@ -81,5 +82,15 @@ class DivisionController extends Controller
     public function destroy(Division $division)
     {
         //
+    }
+
+    public function enableDisable($id){
+        $division = Division::FindOrFail($id);
+        $division->enabled = !$division->enabled;
+        $division->save();
+
+        return redirect(route('divisions.index'))->with([
+            'message' => $division->name.' Division Updated!'
+        ]);
     }
 }
