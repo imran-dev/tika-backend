@@ -20,7 +20,7 @@
                         <tr>
                             <th class="border-l border-t px-2 py-1 sm:text-left">ID</th>
                             <th class="border-l border-t px-2 py-1 sm:text-left">Name</th>
-                            <th class="border-l border-t px-2 py-1 text-center">Action</th>
+                            <th class="border-l border-t px-2 py-1 text-center" colspan="2">Action</th>
                         </tr>
                         @foreach($divisions as $division)
                             <tr>
@@ -30,9 +30,10 @@
                                         {{$division->name}}
                                     @if($division->enabled == 0) </del> @endif
                                 </td>
-                                <td class="border-l border-t px-2 py-1 text-center">
-                                    <a href="{{route('divisions.edit', $division->id)}}" class="text-red-600 inline-block">Edit</a>
-
+                                <td class="border-l border-t px-2 py-1 text-center" width="50">
+                                    <a href="{{route('divisions.edit', $division->id)}}" class="text-red-600">Edit</a>
+                                </td>
+                                <td class="border-l border-t px-2 py-1 text-center" width="50">
                                     <form action="{{route('division-enable-disable', $division->id)}}" method="POST" class="inline-block">
                                         @csrf
                                         <button type="submit">{{$division->enabled == 0 ? 'Restore' : 'Archive'}}</button>
