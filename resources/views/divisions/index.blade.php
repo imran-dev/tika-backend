@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     @if(Session::get('message'))
-                        <div style="background: green; padding: 5px; color: white">
+                        <div style="background: green; padding: 5px; color: white; margin-bottom: 5px;">
                             {{Session::get('message')}}
                         </div>
                     @endif

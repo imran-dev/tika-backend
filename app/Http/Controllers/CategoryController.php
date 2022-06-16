@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -36,7 +36,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'min_age' => 'required|numeric|min:0|max:120',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->min_age = $request->min_age;
+        $status = $category->save();
+        if ($status) {
+            return redirect()->route('categories.index')->with('message', 'Category Created Successfully.');
+        } else {
+            return back()->with('message', 'Something went wrong!');
+        }
     }
 
     /**
@@ -58,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -70,7 +83,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'min_age' => 'required|numeric|min:0|max:120',
+        ]);
+
+        $category->name = $request->name;
+        $category->min_age = $request->min_age;
+        $status = $category->save();
+        if ($status) {
+            return redirect()->route('categories.index')->with(['message' => $category->name . ' is updated.']);
+        } else {
+            return back()->with('message', 'Something went wrong!');
+        }
     }
 
     /**
