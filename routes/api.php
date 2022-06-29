@@ -22,6 +22,9 @@ Route::get('/test', function (){
 
 Route::post('/verify', [VerificationController::class, 'verify']);
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/divisions', [CategoryController::class, 'divisions']);
+Route::get('/districts', [CategoryController::class, 'districts']);
+Route::get('/upazilas', [CategoryController::class, 'upazilas']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -27,7 +27,8 @@ class VerificationController extends Controller
         }
 
         //return $dob;
-        $people = Person::where('id_no', $request->id_no)->where('dob', $request->dob)->first();
+//        $people = Person::where('id_no', $request->id_no)->where('dob', $request->dob)->first();
+        $people = Person::where('id_no', $request->id_no)->first();
         if(empty($people)) {
             $data['message'] = 'ID not found.';
         } else {
